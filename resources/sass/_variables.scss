@@ -1,0 +1,42 @@
+// Body
+$body-bg: #f8fafc;
+
+// Typography
+$font-family-sans-serif: 'Nunito', sans-serif;
+$font-size-base: 0.9rem;
+$line-height-base: 1.6;
+
+// Colors
+$blue: #3490dc;
+$indigo: #6574cd;
+$purple: #9561e2;
+$pink: #f66d9b;
+$red: #e3342f;
+$orange: #f6993f;
+$yellow: #ffed4a;
+$green: #38c172;
+$teal: #4dc0b5;
+$cyan: #6cb2eb;
+
+
+.blue { color: $blue; }
+.indigo { color: $indigo; }
+.purple { color: $purple; }
+.pink { color: $pink; }
+.red { color: $red; }
+.orange { color: $orange; }
+.yellow { color: $yellow; }
+.green { color: $green; }
+.teal { color: $teal; }
+.cyan { color: $cyan; }
+
+.btn-blue { color: $blue; }
+.btn-indigo { color: $indigo; }
+.btn-purple { color: $purple; }
+.btn-pink { color: $pink; }
+.btn-red { color: $red; }
+.btn-orange { color: $orange; }
+.btn-yellow { color: $yellow; }
+.btn-green { color: $green; }
+.btn-teal { color: $teal; }
+.btn-cyan { color: $cyan; }

@@ -1,0 +1,76 @@
+{
+    "add": "agregar",
+    "create": "crear",
+    "edit": "editar",
+    "delete": "eliminar",
+    "show": "ver",
+    "save": "guardar",
+    "store": "almacenar",
+    "update": "actualizar",
+    "destroy": "destruir",
+    "close": "cerrar",
+    "cancel": "cancelar",
+    "back": "volver",
+    "next": "siguiente",
+    "search": "buscar",
+
+    "name": "nombre",
+    "value": "valor",
+    
+    "config": "configuración",
+    "courses": "cursos",
+    "created": "creado",
+    "date": "fecha",
+    "email": "correo",
+    "description": "descripción",
+    "end date": "fecha fin",
+    "export to": "exportar a",
+    "fullname": "nombre completo",
+    "intervals": "intervalos",
+    "indicators": "indicadores",
+    "indicator": "indicador",
+    "items": "items",
+    "options": "opciones",
+    "password": "contraseña",
+    "photo": "foto",
+    "period": "periodo",
+    "qualify": "calificación",
+    "report": "reporte",
+    "range": "rango",
+    "roles": "roles",
+    "record": "puntaje",
+    "select": "seleccione",
+    "start": "inicio",
+    "school": "escuela",
+    "start date": "fecha inicio",
+    "title": "título",
+    "teachers": "profesores",
+    "teacher": "profesor",
+    "text": "texto",
+    "type": "tipo",
+    "users": "usuarios",
+    "user": "usuario",
+    "updated": "actualizado",
+    "weight": "peso",
+
+
+    "scales": "escalas",
+    "scale": "escala",
+    "levels": "niveles",
+    "level": "nivel",
+    "surveys": "encuestas",
+    "survey": "encuesta",
+    "evaluations": "evaluaciones",
+    "evaluation": "evaluación",
+
+
+
+
+
+
+
+
+
+
+    "end": "fin"
+}
