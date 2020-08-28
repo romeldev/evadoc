@@ -5056,7 +5056,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['init', 'items'],
   name: 'tree-menu',
@@ -5086,6 +5085,13 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -5214,8 +5220,8 @@ __webpack_require__.r(__webpack_exports__);
         date_end: moment().add(1, 'days').format('YYYY-MM-DD'),
         survey_id: '',
         survey_text: '',
-        scale_id: '',
-        scale_text: '',
+        level_id: '',
+        level_name: '',
         indicators: []
       })
     };
@@ -5458,6 +5464,28 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -5476,6 +5504,9 @@ __webpack_require__.r(__webpack_exports__);
         survey_id: '',
         level_id: '',
         indicators: [],
+        status: '',
+        has_qualifies: false,
+        has_replies: false,
         action: 'create',
         _method: 'POST'
       }),
@@ -5491,7 +5522,8 @@ __webpack_require__.r(__webpack_exports__);
       periods: [],
       surveys: [],
       levels: [],
-      indicatorTypes: []
+      indicatorTypes: [],
+      status: []
     };
   },
   created: function created() {
@@ -5642,6 +5674,7 @@ __webpack_require__.r(__webpack_exports__);
         _this2.surveys = res.data.surveys;
         _this2.levels = res.data.levels;
         _this2.indicatorTypes = res.data.indicatorTypes;
+        _this2.status = res.data.status;
       })["catch"](function (err) {
         console.log('ERR_GET_PERIODS', err.response);
       });
@@ -5658,7 +5691,10 @@ __webpack_require__.r(__webpack_exports__);
         _this3.form.date_end = res.data.data.date_end;
         _this3.form.indicators = res.data.data.indicators;
         _this3.form.survey_id = res.data.data.survey_id;
-        _this3.form.level_id = res.data.data.level_id; // console.log(this.form);
+        _this3.form.level_id = res.data.data.level_id;
+        _this3.form.status = res.data.data.status;
+        _this3.form.has_replies = res.data.data.has_replies;
+        _this3.form.has_qualifies = res.data.data.has_qualifies;
       })["catch"](function (err) {
         console.log('ERROR', err);
       });
@@ -5699,6 +5735,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
 //
 //
 //
@@ -5898,6 +5935,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -6000,6 +6041,12 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _EvaInfo__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./EvaInfo */ "./resources/js/components/evaluations/EvaInfo.vue");
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -88152,7 +88199,10 @@ var render = function() {
                         ])
                       ]
                     )
-                  : _c("a", { staticClass: "nav-link", attrs: { href: "#" } }, [
+                  : _vm._e(),
+                _vm._v(" "),
+                item.items.length != 0
+                  ? _c("a", { staticClass: "nav-link", attrs: { href: "#" } }, [
                       _c("i", { staticClass: "nav-icon", class: item.icon }),
                       _vm._v(" "),
                       _c("p", [
@@ -88165,9 +88215,14 @@ var render = function() {
                           ? _c("i", { staticClass: "right fas fa-angle-left" })
                           : _vm._e()
                       ])
-                    ]),
+                    ])
+                  : _vm._e(),
                 _vm._v(" "),
-                _c("tree-menu", { attrs: { init: false, items: item.items } })
+                item.items.length != 0
+                  ? _c("tree-menu", {
+                      attrs: { init: false, items: item.items }
+                    })
+                  : _vm._e()
               ],
               1
             )
@@ -88293,114 +88348,7 @@ var staticRenderFns = [
             ])
           ]),
           _vm._v(" "),
-          _c("ul", { staticClass: "navbar-nav ml-auto" }, [
-            _c("li", { staticClass: "nav-item dropdown" }, [
-              _c(
-                "a",
-                {
-                  staticClass: "nav-link",
-                  attrs: { "data-toggle": "dropdown", href: "#" }
-                },
-                [
-                  _c("i", { staticClass: "fas fa-bell" }),
-                  _vm._v(" "),
-                  _c(
-                    "span",
-                    { staticClass: "badge badge-warning navbar-badge" },
-                    [_vm._v("15")]
-                  )
-                ]
-              ),
-              _vm._v(" "),
-              _c(
-                "div",
-                {
-                  staticClass:
-                    "dropdown-menu dropdown-menu-lg dropdown-menu-right"
-                },
-                [
-                  _c("span", { staticClass: "dropdown-header" }, [
-                    _vm._v("15 Notifications")
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "dropdown-divider" }),
-                  _vm._v(" "),
-                  _c(
-                    "a",
-                    { staticClass: "dropdown-item", attrs: { href: "#" } },
-                    [
-                      _c("i", { staticClass: "fas fa-envelope mr-2" }),
-                      _vm._v(" 4 new messages\n                "),
-                      _c(
-                        "span",
-                        { staticClass: "float-right text-muted text-sm" },
-                        [_vm._v("3 mins")]
-                      )
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "dropdown-divider" }),
-                  _vm._v(" "),
-                  _c(
-                    "a",
-                    { staticClass: "dropdown-item", attrs: { href: "#" } },
-                    [
-                      _c("i", { staticClass: "fas fa-users mr-2" }),
-                      _vm._v(" 8 friend requests\n                "),
-                      _c(
-                        "span",
-                        { staticClass: "float-right text-muted text-sm" },
-                        [_vm._v("12 hours")]
-                      )
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "dropdown-divider" }),
-                  _vm._v(" "),
-                  _c(
-                    "a",
-                    { staticClass: "dropdown-item", attrs: { href: "#" } },
-                    [
-                      _c("i", { staticClass: "fas fa-file mr-2" }),
-                      _vm._v(" 3 new reports\n                "),
-                      _c(
-                        "span",
-                        { staticClass: "float-right text-muted text-sm" },
-                        [_vm._v("2 days")]
-                      )
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "dropdown-divider" }),
-                  _vm._v(" "),
-                  _c(
-                    "a",
-                    {
-                      staticClass: "dropdown-item dropdown-footer",
-                      attrs: { href: "#" }
-                    },
-                    [_vm._v("See All Notifications")]
-                  )
-                ]
-              )
-            ]),
-            _vm._v(" "),
-            _c("li", { staticClass: "nav-item" }, [
-              _c(
-                "a",
-                {
-                  staticClass: "nav-link",
-                  attrs: {
-                    "data-widget": "control-sidebar",
-                    "data-slide": "true",
-                    href: "#",
-                    role: "button"
-                  }
-                },
-                [_c("i", { staticClass: "fas fa-th-large" })]
-              )
-            ])
-          ])
+          _c("ul", { staticClass: "navbar-nav ml-auto" })
         ]
       )
     ])
@@ -88475,11 +88423,11 @@ var render = function() {
           ]),
           _vm._v(" "),
           _c("dt", { staticClass: "col-sm-4" }, [
-            _vm._v(_vm._s(_vm._f("capitalize")(_vm.$t("scale"))))
+            _vm._v(_vm._s(_vm._f("capitalize")(_vm.$t("level"))))
           ]),
           _vm._v(" "),
           _c("dd", { staticClass: "col-sm-8" }, [
-            _vm._v(_vm._s(_vm.evaluation.scale_text))
+            _vm._v(_vm._s(_vm.evaluation.level_name))
           ]),
           _vm._v(" "),
           _c("dt", { staticClass: "col-sm-12" }, [
@@ -88721,7 +88669,7 @@ var render = function() {
       _c("div", { staticClass: "card-header" }, [
         _c(
           "h5",
-          { staticClass: "modal-title", attrs: { id: "exampleModalLabel" } },
+          { staticClass: "card-title", attrs: { id: "exampleModalLabel" } },
           [
             _c("i", { staticClass: "fas fa-tags fa-fw" }),
             _vm._v(
@@ -88730,6 +88678,29 @@ var render = function() {
                 "\n            "
             )
           ]
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "card-tools" },
+          [
+            _c(
+              "router-link",
+              {
+                staticClass: "btn btn-sm btn-outline-secondary",
+                attrs: { to: { name: "evaluation.index" } }
+              },
+              [
+                _c("i", { staticClass: "fas fa-arrow-alt-circle-left" }),
+                _vm._v(
+                  "\n                    " +
+                    _vm._s(_vm.$t("back")) +
+                    "\n                "
+                )
+              ]
+            )
+          ],
+          1
         )
       ]),
       _vm._v(" "),
@@ -88791,48 +88762,6 @@ var render = function() {
                 "div",
                 { staticClass: "form-group" },
                 [
-                  _c("label", { attrs: { for: "descrip" } }, [
-                    _vm._v(_vm._s(_vm._f("capitalize")(_vm.$t("description"))))
-                  ]),
-                  _vm._v(" "),
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.form.descrip,
-                        expression: "form.descrip"
-                      }
-                    ],
-                    staticClass: "form-control form-control-sm",
-                    class: { "is-invalid": _vm.form.errors.has("descrip") },
-                    attrs: {
-                      type: "text",
-                      id: "descrip",
-                      readonly: _vm.onlyRead
-                    },
-                    domProps: { value: _vm.form.descrip },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.$set(_vm.form, "descrip", $event.target.value)
-                      }
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c("has-error", {
-                    attrs: { form: _vm.form, field: "descrip" }
-                  })
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "form-group" },
-                [
                   _c("label", { attrs: { for: "period" } }, [
                     _vm._v(_vm._s(_vm._f("capitalize")(_vm.$t("period"))))
                   ]),
@@ -88850,7 +88779,10 @@ var render = function() {
                       ],
                       staticClass: "form-control form-control-sm",
                       class: { "is-invalid": _vm.form.errors.has("period_id") },
-                      attrs: { id: "period_id", disabled: _vm.onlyRead },
+                      attrs: {
+                        id: "period_id",
+                        disabled: _vm.onlyRead || _vm.form.has_replies == true
+                      },
                       on: {
                         change: [
                           function($event) {
@@ -89026,7 +88958,10 @@ var render = function() {
                       ],
                       staticClass: "form-control form-control-sm",
                       class: { "is-invalid": _vm.form.errors.has("survey_id") },
-                      attrs: { id: "survey_id", disabled: _vm.onlyRead },
+                      attrs: {
+                        id: "survey_id",
+                        disabled: _vm.onlyRead || _vm.form.has_replies == true
+                      },
                       on: {
                         change: [
                           function($event) {
@@ -89148,13 +89083,118 @@ var render = function() {
                 "div",
                 { staticClass: "form-group" },
                 [
+                  _c("label", { attrs: { for: "date_end" } }, [
+                    _vm._v(_vm._s(_vm._f("capitalize")(_vm.$t("status"))))
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "select",
+                    {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.form.status,
+                          expression: "form.status"
+                        }
+                      ],
+                      staticClass: "form-control form-control-sm",
+                      class: { "is-invalid": _vm.form.errors.has("status") },
+                      attrs: { id: "status", disabled: _vm.onlyRead },
+                      on: {
+                        change: function($event) {
+                          var $$selectedVal = Array.prototype.filter
+                            .call($event.target.options, function(o) {
+                              return o.selected
+                            })
+                            .map(function(o) {
+                              var val = "_value" in o ? o._value : o.value
+                              return val
+                            })
+                          _vm.$set(
+                            _vm.form,
+                            "status",
+                            $event.target.multiple
+                              ? $$selectedVal
+                              : $$selectedVal[0]
+                          )
+                        }
+                      }
+                    },
+                    [
+                      _c("option", { attrs: { value: "" } }, [
+                        _vm._v("Select...")
+                      ]),
+                      _vm._v(" "),
+                      _vm._l(_vm.status, function(statusValue, key) {
+                        return _c(
+                          "option",
+                          { key: key, domProps: { value: key } },
+                          [_vm._v(_vm._s(statusValue))]
+                        )
+                      })
+                    ],
+                    2
+                  ),
+                  _vm._v(" "),
+                  _c("has-error", {
+                    attrs: { form: _vm.form, field: "status" }
+                  })
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "form-group" },
+                [
+                  _c("label", { attrs: { for: "descrip" } }, [
+                    _vm._v(_vm._s(_vm._f("capitalize")(_vm.$t("description"))))
+                  ]),
+                  _vm._v(" "),
+                  _c("textarea", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.form.descrip,
+                        expression: "form.descrip"
+                      }
+                    ],
+                    staticClass: "form-control form-control-sm",
+                    class: { "is-invalid": _vm.form.errors.has("descrip") },
+                    attrs: { rows: "3", id: "descrip", readonly: _vm.onlyRead },
+                    domProps: { value: _vm.form.descrip },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.form, "descrip", $event.target.value)
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("has-error", {
+                    attrs: { form: _vm.form, field: "descrip" }
+                  })
+                ],
+                1
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-12" }, [
+              _c(
+                "div",
+                { staticClass: "form-group" },
+                [
                   _c("label", { attrs: { for: "indicators" } }, [
                     _vm._v(
                       "\n                            " +
                         _vm._s(_vm._f("capitalize")(_vm.$t("indicators"))) +
                         "\n                            "
                     ),
-                    !_vm.onlyRead
+                    !(_vm.onlyRead || _vm.form.has_qualifies)
                       ? _c(
                           "a",
                           {
@@ -89187,7 +89227,7 @@ var render = function() {
                         [
                           _c("thead", [
                             _c("tr", [
-                              !_vm.onlyRead
+                              !(_vm.onlyRead || _vm.form.has_qualifies)
                                 ? _c("td", { attrs: { width: "30" } })
                                 : _vm._e(),
                               _vm._v(" "),
@@ -89230,7 +89270,7 @@ var render = function() {
                               key
                             ) {
                               return _c("tr", { key: key }, [
-                                !_vm.onlyRead
+                                !(_vm.onlyRead || _vm.form.has_qualifies)
                                   ? _c("td", { staticClass: "text-center" }, [
                                       _c(
                                         "a",
@@ -89657,6 +89697,10 @@ var render = function() {
                 _vm._v(" "),
                 _c("th", [_vm._v(_vm._s(_vm._f("capitalize")(_vm.$t("end"))))]),
                 _vm._v(" "),
+                _c("th", [
+                  _vm._v(_vm._s(_vm._f("capitalize")(_vm.$t("status"))))
+                ]),
+                _vm._v(" "),
                 _c("th", { attrs: { width: "50" } })
               ])
             ]),
@@ -89674,6 +89718,26 @@ var render = function() {
                   _c("td", [_vm._v(_vm._s(_vm._f("datePE")(item.date_start)))]),
                   _vm._v(" "),
                   _c("td", [_vm._v(_vm._s(_vm._f("datePE")(item.date_end)))]),
+                  _vm._v(" "),
+                  _c("td", { staticClass: "text-center" }, [
+                    item.status == 1
+                      ? _c("span", { staticClass: "badge badge-primary" }, [
+                          _vm._v(_vm._s(_vm.$t("started")))
+                        ])
+                      : _vm._e(),
+                    _vm._v(" "),
+                    item.status == 2
+                      ? _c("span", { staticClass: "badge badge-danger" }, [
+                          _vm._v(_vm._s(_vm.$t("stoped")))
+                        ])
+                      : _vm._e(),
+                    _vm._v(" "),
+                    item.status == 3
+                      ? _c("span", { staticClass: "badge badge-success" }, [
+                          _vm._v(_vm._s(_vm.$t("finished")))
+                        ])
+                      : _vm._e()
+                  ]),
                   _vm._v(" "),
                   _c("td", { staticClass: "center" }, [
                     _vm._m(0, true),
@@ -89763,32 +89827,8 @@ var render = function() {
                             }),
                             _vm._v(" " + _vm._s(_vm.$t("teachers")) + " ")
                           ]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "router-link",
-                          {
-                            staticClass: "dropdown-item",
-                            attrs: {
-                              to: {
-                                name: "report.general",
-                                params: { evaluation_id: 1 }
-                              }
-                            }
-                          },
-                          [
-                            _c("i", {
-                              staticClass: "text-purple fa fa-file fa-fw"
-                            }),
-                            _vm._v(
-                              " " +
-                                _vm._s(_vm.$t("report")) +
-                                "\n                                "
-                            )
-                          ]
                         )
-                      ],
-                      1
+                      ]
                     )
                   ])
                 ])
@@ -89871,7 +89911,7 @@ var render = function() {
         _c("div", { staticClass: "card-header" }, [
           _c(
             "h5",
-            { staticClass: "modal-title", attrs: { id: "exampleModalLabel" } },
+            { staticClass: "card-title", attrs: { id: "exampleModalLabel" } },
             [
               _c("i", { staticClass: "fas fa-tags fa-fw" }),
               _vm._v(
@@ -89880,17 +89920,38 @@ var render = function() {
                   "\n                "
               )
             ]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "card-tools" },
+            [
+              _c(
+                "router-link",
+                {
+                  staticClass: "btn btn-sm btn-outline-secondary",
+                  attrs: {
+                    to: {
+                      name: "evaluation.teachers",
+                      params: { evaluation_id: _vm.qualify.evaluation_id }
+                    }
+                  }
+                },
+                [
+                  _c("i", { staticClass: "fas fa-arrow-alt-circle-left" }),
+                  _vm._v(
+                    "\n                        " +
+                      _vm._s(_vm.$t("back")) +
+                      "\n                    "
+                  )
+                ]
+              )
+            ],
+            1
           )
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "card-body" }, [
-          _vm._v("\n                qualify_id: " + _vm._s(_vm.qualify.id)),
-          _c("br"),
-          _vm._v(
-            "\n                updated_at: " +
-              _vm._s(_vm.qualify.updated_at) +
-              "\n                "
-          ),
           _c(
             "form",
             {
@@ -89904,7 +89965,7 @@ var render = function() {
             },
             [
               _c("div", { staticClass: "col-sm-12 form-group" }, [
-                _c("label", { attrs: { for: "teacher_id" } }, [
+                _c("label", [
                   _vm._v(_vm._s(_vm._f("capitalize")(_vm.$t("teacher"))))
                 ]),
                 _vm._v(" "),
@@ -89918,7 +89979,7 @@ var render = function() {
                     }
                   ],
                   staticClass: "form-control form-control-sm",
-                  attrs: { type: "text" },
+                  attrs: { type: "text", readonly: "" },
                   domProps: { value: _vm.teacher.fullname },
                   on: {
                     input: function($event) {
@@ -90192,10 +90253,7 @@ var render = function() {
           _c("div", { staticClass: "card-header" }, [
             _c(
               "h5",
-              {
-                staticClass: "modal-title",
-                attrs: { id: "exampleModalLabel" }
-              },
+              { staticClass: "card-title", attrs: { id: "exampleModalLabel" } },
               [
                 _c("i", { staticClass: "fas fa-users fa-fw" }),
                 _vm._v(
@@ -90204,6 +90262,29 @@ var render = function() {
                     "\n                    "
                 )
               ]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "card-tools" },
+              [
+                _c(
+                  "router-link",
+                  {
+                    staticClass: "btn btn-sm btn-outline-secondary",
+                    attrs: { to: { name: "evaluation.index" } }
+                  },
+                  [
+                    _c("i", { staticClass: "fas fa-arrow-alt-circle-left" }),
+                    _vm._v(
+                      "\n                            " +
+                        _vm._s(_vm.$t("back")) +
+                        "\n                        "
+                    )
+                  ]
+                )
+              ],
+              1
             )
           ]),
           _vm._v(" "),

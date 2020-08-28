@@ -10,19 +10,23 @@
         <div class="col-md-6 col-lg-8">
             <div class="card">
                 <div class="card-header">
-                    <h5 class="modal-title" id="exampleModalLabel">
+                    <h5 class="card-title" id="exampleModalLabel">
                         <i class="fas fa-tags fa-fw"></i>
                         {{ $t('qualify') | capitalize }}
                     </h5>
+                    <div class="card-tools">
+                        <router-link :to="{name: 'evaluation.teachers', params: {'evaluation_id': qualify.evaluation_id} }" class="btn btn-sm btn-outline-secondary">
+                            <i class="fas fa-arrow-alt-circle-left"></i>
+                            {{ $t('back')}}
+                        </router-link>
+                    </div>
                 </div>
                 <div class="card-body">
-                    qualify_id: {{ qualify.id }}<br>
-                    updated_at: {{ qualify.updated_at }}
                     <form @submit.prevent="save()" class="row">
 
                         <div class="col-sm-12 form-group">
-                            <label for="teacher_id">{{ $t('teacher') | capitalize }}</label>
-                            <input type="text" class="form-control form-control-sm" v-model="teacher.fullname">
+                            <label>{{ $t('teacher') | capitalize }}</label>
+                            <input type="text" readonly class="form-control form-control-sm" v-model="teacher.fullname">
                             <input type="hidden" class="form-control form-control-sm" v-model="qualify.teacher_code">
                         </div>
 

@@ -49,47 +49,49 @@
         <!-- Table -->
         <div class="card">
             <div class="card-header">
-                <h5 class="modal-title" id="exampleModalLabel">
+                <h5 class="card-title" id="exampleModalLabel">
                     <i class="fas fa-tags fa-fw"></i>
                     {{ $t('evaluation') | capitalize }}
                 </h5>
+
+                <div class="card-tools">
+                    <router-link :to="{name: 'evaluation.index'}" class="btn btn-sm btn-outline-secondary">
+                        <i class="fas fa-arrow-alt-circle-left"></i>
+                        {{ $t('back')}}
+                    </router-link>
+                </div>
             </div>
             <div class="card-body">
                 <form @submit.prevent="crud()" class="row">
 
                     <div class="col-sm-12 col-md-6">
+                        <!-- title -->
                         <div class="form-group">
                             <label for="title">{{ $t('title') | capitalize }}</label>
                             <input type="text" v-model="form.title" id="title" class="form-control form-control-sm"
                                 :class="{ 'is-invalid': form.errors.has('title') }" :readonly="onlyRead">
                             <has-error :form="form" field="title"></has-error>
                         </div>
-
-                        <div class="form-group">
-                            <label for="descrip">{{ $t('description') | capitalize }}</label>
-                            <input type="text" v-model="form.descrip" id="descrip" class="form-control form-control-sm"
-                                :class="{ 'is-invalid': form.errors.has('descrip') }" :readonly="onlyRead">
-                            <has-error :form="form" field="descrip"></has-error>
-                        </div>
-
+                        <!-- Period -->
                         <div class="form-group">
                             <label for="period">{{ $t('period') | capitalize }}</label>
                             <select @change="handlePeriod" v-model="form.period_id" id="period_id" class="form-control form-control-sm"
-                                :class="{ 'is-invalid': form.errors.has('period_id') }" :disabled="onlyRead">
+                                :class="{ 'is-invalid': form.errors.has('period_id') }" 
+                                :disabled="onlyRead || form.has_replies==true">
                                 <option value="">Select...</option>
                                 <option v-for="(period, key) in periods" :key="key" :value="period.id">{{period.name}}</option>
                             </select>
                             <has-error :form="form" field="period_id"></has-error>
                             <input type="hidden" v-model="form.period_text" class="form-control form-control-sm">
                         </div>
-
+                        <!-- Date start -->
                         <div class="form-group">
                             <label for="date_start">{{ $t('start date') | capitalize }}</label>
                             <input type="date" v-model="form.date_start" id="date_start" class="form-control form-control-sm"
                                 :class="{ 'is-invalid': form.errors.has('date_start') }" :readonly="onlyRead">
                             <has-error :form="form" field="date_start"></has-error>
                         </div>
-
+                        <!-- Date end -->
                         <div class="form-group">
                             <label for="date_end">{{ $t('end date') | capitalize }}</label>
                             <input type="date" v-model="form.date_end" id="date_end" class="form-control form-control-sm"
@@ -99,13 +101,13 @@
                     </div>
                     
                     <div class="col-sm-12 col-md-6">
-
+                        <!-- Survey -->
                         <div class="form-group">
                             <label for="survey_id">{{ $t('survey') | capitalize }}</label>
                             <select id="survey_id" class="form-control form-control-sm"
                                 v-model="form.survey_id" 
                                 :class="{ 'is-invalid': form.errors.has('survey_id') }" 
-                                :disabled="onlyRead"
+                                :disabled="onlyRead || form.has_replies==true"
                                 @change="handleSelectSurvey()">
                                 <option value="">Select...</option>
                                 <option v-for="(survey, keys) in surveys" 
@@ -115,7 +117,7 @@
                             </select>
                             <has-error :form="form" field="survey_id"></has-error>
                         </div>
-
+                        <!-- Level -->
                         <div class="form-group">
                             <label for="level_id">{{ $t('level') | capitalize }}</label>
                             <select id="level_id" class="form-control form-control-sm"
@@ -130,17 +132,37 @@
                             </select>
                             <has-error :form="form" field="level_id"></has-error>
                         </div>
+                        <!-- Status -->
+                        <div class="form-group">
+                            <label for="date_end">{{ $t('status') | capitalize }}</label>
+                            <select v-model="form.status" id="status" class="form-control form-control-sm"
+                                :class="{ 'is-invalid': form.errors.has('status') }" :disabled="onlyRead">
+                                <option value="">Select...</option>
+                                <option v-for="(statusValue, key) in status" :key="key" :value="key">{{statusValue}}</option>
+                            </select>
+                            <has-error :form="form" field="status"></has-error>
+                        </div>
+                        <!-- Description -->
+                        <div class="form-group">
+                            <label for="descrip">{{ $t('description') | capitalize }}</label>
+                            <textarea rows="3" v-model="form.descrip" id="descrip" class="form-control form-control-sm"
+                                :class="{ 'is-invalid': form.errors.has('descrip') }" :readonly="onlyRead"></textarea>
+                            <has-error :form="form" field="descrip"></has-error>
+                        </div>
+                    </div>
 
+                    <div class="col-12">
+                        <!-- Indicators -->
                         <div class="form-group">
                             <label for="indicators">
                                 {{ $t('indicators') | capitalize }}
-                                <a href="#" v-if="!onlyRead" @click.prevent="addIndicator()" class="badge badge-secondary badge-pill"> <i class="fa fa-plus fa-fw"></i></a>
+                                <a href="#" v-if="!(onlyRead || form.has_qualifies)" @click.prevent="addIndicator()" class="badge badge-secondary badge-pill"> <i class="fa fa-plus fa-fw"></i></a>
                             </label>
                             <div style="height: 340px; overflow-y: scroll;" >  
                                 <table class="table table-sm table-hover table-bordered" >
                                     <thead>
                                         <tr>
-                                            <td width="30" v-if="!onlyRead"></td>
+                                            <td width="30" v-if="!(onlyRead || form.has_qualifies)"></td>
                                             <td width="30">#</td>
                                             <td>{{ $t('name') | capitalize }}</td>
                                             <td width="30" class="text-center"><i class="fa fa-edit" title="editable"></i></td>
@@ -151,7 +173,7 @@
                                     </thead>
                                     <tbody>
                                         <tr v-for="(indicator,key) in this.form.indicators" :key="key">
-                                            <td class="text-center" v-if="!onlyRead">
+                                            <td class="text-center" v-if="!(onlyRead ||form.has_qualifies)">
                                                 <a href="#" @click.prevent="removeIndicator(key)"><i class="text-danger fas fa-trash"></i></a>
                                             </td>
                                             
@@ -229,6 +251,9 @@
                     survey_id: '',
                     level_id: '',
                     indicators: [],
+                    status: '',
+                    has_qualifies: false,
+                    has_replies: false,
                     action: 'create',
                     _method: 'POST'
                 }),
@@ -248,6 +273,7 @@
                 surveys: [],
                 levels: [],
                 indicatorTypes: [],
+                status: [],
             }
         },
 
@@ -417,6 +443,7 @@
                     this.surveys = res.data.surveys;
                     this.levels = res.data.levels;
                     this.indicatorTypes = res.data.indicatorTypes;
+                    this.status = res.data.status;
                 })
                 .catch( err => {
                     console.log('ERR_GET_PERIODS', err.response );
@@ -436,7 +463,9 @@
                         this.form.indicators = res.data.data.indicators;
                         this.form.survey_id = res.data.data.survey_id;
                         this.form.level_id = res.data.data.level_id;
-                        // console.log(this.form);
+                        this.form.status = res.data.data.status;
+                        this.form.has_replies = res.data.data.has_replies;
+                        this.form.has_qualifies = res.data.data.has_qualifies;
                     })
                     .catch( err => {
                         console.log('ERROR', err);

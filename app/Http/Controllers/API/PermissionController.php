@@ -15,7 +15,8 @@ class PermissionController extends Controller
      */
     public function index(Request $request)
     {
-        return Permission::search($request->search)->latest()->paginate(10);
+        $roles = Permission::where('name', 'like', "%$request->search%")->latest()->paginate(10);
+        return $roles;
     }
 
     /**

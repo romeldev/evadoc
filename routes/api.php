@@ -31,6 +31,9 @@ Route::get('common', 'API\CommonController@index');
 Route::apiResource('permissions', 'API\PermissionController');
 Route::apiResource('roles', 'API\RoleController');
 Route::apiResource('users', 'API\UserController');
+Route::post('users/{user_id}/update-profile', 'API\UserController@updateProfile');
+
+
 Route::apiResource('menus', 'API\MenuController');
 
 

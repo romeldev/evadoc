@@ -25,7 +25,10 @@ class EvaluationResource extends JsonResource
             'survey_id' => $this->survey_id,
             'survey_text' => $this->survey->title,
             'level_id' => $this->level_id,
-            'level_text' => $this->level->name,
+            'level_name' => $this->level->name,
+            'status' => $this->status,
+            'has_replies' => $this->hasReplies(),
+            'has_qualifies' => $this->hasQualifies(),
             'indicators' => IndicatorResource::collection($this->indicators),
         ];
     }

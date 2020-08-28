@@ -18,8 +18,8 @@
                     <dt class="col-sm-4">{{ $t('survey') | capitalize }}</dt>
                     <dd class="col-sm-8">{{evaluation.survey_text}}</dd>
 
-                    <dt class="col-sm-4">{{ $t('scale') | capitalize }}</dt>
-                    <dd class="col-sm-8">{{evaluation.scale_text}}</dd>
+                    <dt class="col-sm-4">{{ $t('level') | capitalize }}</dt>
+                    <dd class="col-sm-8">{{evaluation.level_name}}</dd>
 
                     <dt class="col-sm-12">{{ $t('description') | capitalize }}</dt>
                     <dd class="col-sm-12">{{evaluation.descrip}}</dd>
@@ -46,8 +46,8 @@ export default {
                 date_end: moment().add(1,'days').format('YYYY-MM-DD'),
                 survey_id: '',
                 survey_text: '',
-                scale_id: '',
-                scale_text: '',
+                level_id: '',
+                level_name: '',
                 indicators: [],
             }),
         }

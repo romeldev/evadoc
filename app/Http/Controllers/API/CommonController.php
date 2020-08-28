@@ -57,7 +57,7 @@ class CommonController extends Controller
         $data['surveys'] = $this->allSurveys();
         $data['levels'] = Level::select('id', 'name')->get();
         $data['indicatorTypes'] = $this->allIndicatorTypes();
-
+        $data['status'] = Evaluation::arrayStatus();
         return $data;
     }
 

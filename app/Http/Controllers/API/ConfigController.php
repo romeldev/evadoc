@@ -34,7 +34,7 @@ class ConfigController extends Controller
         foreach($request->caches as $cache) 
         {
             if( $cache['check'] ){
-                Config::clearCache( _const($cache['check']) );
+                Config::clearCache( _const($cache['key']) );
             }
         }
 

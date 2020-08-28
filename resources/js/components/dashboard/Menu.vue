@@ -14,15 +14,14 @@
                     </p>
                 </router-link>
 
-                <a href="#" class="nav-link" v-else>
+                <a href="#" class="nav-link" v-if="item.items.length!=0">
                     <i class="nav-icon" :class="item.icon"></i>
                     <p>
                         {{item.label}}
                         <i class="right fas fa-angle-left" v-if="item.items.length"></i>
-
                     </p>
                 </a>
-                <tree-menu :init="false" :items="item.items"></tree-menu>
+                <tree-menu :init="false" :items="item.items" v-if="item.items.length!=0"></tree-menu>
             </li>
 
         </ul>

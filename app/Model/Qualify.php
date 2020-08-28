@@ -12,8 +12,8 @@ class Qualify extends Model
         'teacher_code', 
         'course_code', 
         'course_key', 
+        'school_code',
         // 'course_group', 
-        // 'school_code',
     ];
 
     public function evaluation()

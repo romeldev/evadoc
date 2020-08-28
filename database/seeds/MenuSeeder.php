@@ -156,13 +156,23 @@ class MenuSeeder extends Seeder
             'menu_id' => 8,
         ];
 
-        // Menus
+        // exclusions
         $items[] = [
             'id' => 14,
             'order' => 5,
             'label' => 'exclusions',
-            'path' => '/settings/exclusions',
+            'path' => '/settings/exclusions/teachers',
             'icon' => 'fas fa-circle',
+            'menu_id' => 8,
+        ];
+
+        // System
+        $items[] = [
+            'id' => 15,
+            'order' => 6,
+            'label' => 'system',
+            'path' => '/settings/system',
+            'icon' => 'fas fa-desktop',
             'menu_id' => 8,
         ];
 

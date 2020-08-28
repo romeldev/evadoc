@@ -11,9 +11,20 @@ class Evaluation extends Model
     
     protected $fillable = [ 'title', 'descrip', 'period_id', 'period_text', 'date_start', 'date_end', 'survey_id', 'level_id' ];
 
-    CONST STATUS_STOPED  = 1;
-    CONST STATUS_STARTED = 2;
+    CONST STATUS_STARTED = 1;
+    CONST STATUS_STOPED  = 2;
     CONST STATUS_FINISHED= 3;
+
+    public static function arrayStatus()
+    {
+        return [
+            self::STATUS_STARTED => __('started'),
+            self::STATUS_STOPED => __('stoped'),
+            self::STATUS_FINISHED => __('finished'),
+        ];
+    }
+
+    
 
     public static function currentEvaluation()
     {
@@ -31,6 +42,40 @@ class Evaluation extends Model
             ;
         }
     }
+
+    public function hasQualifies()
+    {
+        return $this->qualifyIndicators->count()>0;
+    }
+
+    public function hasReplies()
+    {
+        return $this->replies->count()>0;
+    }
+
+    public function replies()
+    {
+        return $this->hasMany(Reply::class, 'evaluation_id');
+    }
+
+    public function qualifies()
+    {
+        return $this->hasMany(Qualify::class, 'evaluation_id');
+    }
+
+    public function qualifyIndicators()
+    {
+        return $this->hasManyThrough(
+            QualifyIndicator::class,    // Tabla final
+            Qualify::class,             // Tabla intermedia
+            'evaluation_id',            // FK de la tabla intermedia
+            'qualify_id',               // FK de la tabla final
+            'id',                       // LK de la tabla inicial
+            'id'                        // LK de la tabla intermedia
+        );  
+    }
+
+    
 
     public function indicators()
     {

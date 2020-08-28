@@ -33,6 +33,7 @@
                             <th>{{ $t('period') | capitalize }}</th>
                             <th>{{ $t('start') | capitalize }}</th>
                             <th>{{ $t('end') | capitalize }}</th>
+                            <th>{{ $t('status') | capitalize }}</th>
                             <th width="50"></th>
                         </tr>
                     </thead>
@@ -43,6 +44,11 @@
                             <td>{{item.period_text}}</td>
                             <td>{{item.date_start |datePE}}</td>
                             <td>{{item.date_end |datePE}}</td>
+                            <td class="text-center">
+                                <span class="badge badge-primary" v-if="item.status==1">{{ $t('started') }}</span>
+                                <span class="badge badge-danger" v-if="item.status==2">{{ $t('stoped') }}</span>
+                                <span class="badge badge-success" v-if="item.status==3">{{ $t('finished') }}</span>
+                            </td>
                             <td class="center">
 
                                 <a class="btn btn-sm btn-outline-secondary btn-block dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="fa fa-cog fa-fw"></i></a>
@@ -51,12 +57,7 @@
                                     <a href="#" @click.prevent="show('show', item)" class="dropdown-item"> <i class="text-info fa fa-eye fa-fw"></i> {{ $t('show') }} </a>
                                     <a href="#" @click.prevent="show('edit', item)" class="dropdown-item"> <i class="text-success fa fa-edit fa-fw"></i> {{ $t('edit') }} </a>
                                     <a href="#" @click.prevent="show('delete', item)" class="dropdown-item"> <i class="text-danger fa fa-trash fa-fw"></i> {{ $t('delete') }} </a>
-
                                     <a href="#" @click.prevent="show('teachers', item)" class="dropdown-item"> <i class="text-primary fa fa-trash fa-fw"></i> {{ $t('teachers') }} </a>
-
-                                    <router-link :to="{ name:'report.general', params: {evaluation_id:1}}" class="dropdown-item">
-                                        <i class="text-purple fa fa-file fa-fw"></i> {{ $t('report') }}
-                                    </router-link>
                                 </div>
 
                             </td>

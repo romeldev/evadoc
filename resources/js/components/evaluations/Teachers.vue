@@ -10,10 +10,16 @@
             <div class="col-md-6 col-lg-8">
                 <div class="card">
                     <div class="card-header">
-                        <h5 class="modal-title" id="exampleModalLabel">
+                        <h5 class="card-title" id="exampleModalLabel">
                             <i class="fas fa-users fa-fw"></i>
                             {{ $t('teachers') | capitalize }}
                         </h5>
+                        <div class="card-tools">
+                            <router-link :to="{name: 'evaluation.index'}" class="btn btn-sm btn-outline-secondary">
+                                <i class="fas fa-arrow-alt-circle-left"></i>
+                                {{ $t('back')}}
+                            </router-link>
+                        </div>
                     </div>
                     <div class="card-body">
 
