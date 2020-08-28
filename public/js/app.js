@@ -6282,7 +6282,6 @@ __webpack_require__.r(__webpack_exports__);
           'school_code': this.school_code
         }
       }).then(function (res) {
-        console.log(res.data);
         _this2.teachers = res.data;
       })["catch"](function (err) {
         console.log('ERROR', err);
@@ -6902,7 +6901,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 0:
                 axios.get("/api/".concat(_this.resource)).then(function (res) {
                   _this.items = res.data.data;
-                  console.log(_this.items);
                 })["catch"](function (err) {
                   console.log('ERROR', err);
                 });

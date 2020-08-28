@@ -134,7 +134,6 @@
                     'evaluation_id':  this.evaluation_id,
                     'school_code':  this.school_code,
                 }}).then( res => {
-                    console.log(res.data);
                     this.teachers = res.data;
                 })
                 .catch( err => {

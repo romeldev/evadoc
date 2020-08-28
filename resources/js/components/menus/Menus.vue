@@ -144,7 +144,6 @@
                 axios.get(`/api/${this.resource}`)
                 .then( res => {
                     this.items = res.data.data;
-                    console.log(this.items)
                 })
                 .catch( err => {
                     console.log('ERROR', err);
