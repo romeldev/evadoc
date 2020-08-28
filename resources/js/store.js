@@ -66,6 +66,7 @@ const store = new Vuex.Store({
                     localStorage.setItem('access_token', token)
                     context.commit('retrieveToken', token)
                     this.dispatch('retrieveUser')
+                    this.dispatch('retrieveMenus')
                     resolve(res)
                 })
                 .catch( err => {

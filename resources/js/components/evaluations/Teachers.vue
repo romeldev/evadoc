@@ -98,9 +98,7 @@
                     'evaluation_id': this.evaluation_id,
                 }})
                 .then( res => {
-                    console.log('res', res.data)
                     this.teachers = res.data;
-
                 })
                 .catch( err => {
                     console.log('ERROR', err);

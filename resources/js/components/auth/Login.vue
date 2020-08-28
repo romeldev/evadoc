@@ -3,12 +3,8 @@
     <div class="card-body login-card-body">
         <p class="login-box-msg">Sign in to start your session</p>
 
-        <div class="alert alert-info" role="alert">
-            Error: {{ error }}
-        </div>
-
-        <div class="alert alert-danger" role="alert" v-if="form.errors.has('email')">
-            {{form.errors.errors.email[0]}}
+        <div class="alert alert-danger" role="alert" v-if="error.message">
+            Error: {{ error.message }}
         </div>
 
         <form @submit.prevent="login()">

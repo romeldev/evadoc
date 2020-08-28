@@ -4608,10 +4608,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -6129,7 +6125,6 @@ __webpack_require__.r(__webpack_exports__);
           'evaluation_id': this.evaluation_id
         }
       }).then(function (res) {
-        console.log('res', res.data);
         _this.teachers = res.data;
       })["catch"](function (err) {
         console.log('ERROR', err);
@@ -87311,19 +87306,13 @@ var render = function() {
         _vm._v("Sign in to start your session")
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "alert alert-info", attrs: { role: "alert" } }, [
-        _vm._v("\n          Error: " + _vm._s(_vm.error) + "\n      ")
-      ]),
-      _vm._v(" "),
-      _vm.form.errors.has("email")
+      _vm.error.message
         ? _c(
             "div",
             { staticClass: "alert alert-danger", attrs: { role: "alert" } },
             [
               _vm._v(
-                "\n          " +
-                  _vm._s(_vm.form.errors.errors.email[0]) +
-                  "\n      "
+                "\n          Error: " + _vm._s(_vm.error.message) + "\n      "
               )
             ]
           )
@@ -115853,6 +115842,8 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
           context.commit('retrieveToken', token);
 
           _this.dispatch('retrieveUser');
+
+          _this.dispatch('retrieveMenus');
 
           resolve(res);
         })["catch"](function (err) {
