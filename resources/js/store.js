@@ -84,7 +84,6 @@ const store = new Vuex.Store({
                         axios.defaults.headers.common['Authorization'] = null
                         localStorage.removeItem('access_token')
                         context.commit('destroyToken')
-                        context.commit('setUser', null)
                         resolve(res)
                     })
                     .catch(err => {

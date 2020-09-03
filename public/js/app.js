@@ -4656,14 +4656,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
-  created: function created() {
+  mounted: function mounted() {
     var _this = this;
 
     this.$store.dispatch("destroyToken").then(function (response) {
       _this.$router.push({
         name: 'login'
       });
-    });
+    })["catch"](function (err) {});
   }
 });
 
@@ -87524,7 +87524,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [_vm._v("\n    logout...\n")])
+  return _c("div", [_vm._v("\n    Logout...\n")])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -115655,13 +115655,6 @@ __webpack_require__.r(__webpack_exports__);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]);
 var pathCrud = ':id(\\d+|create)/:action(\\edit|delete)?';
 var routes = [{
-  path: "/dashboard",
-  name: "dashboard",
-  component: _components_Dashboard__WEBPACK_IMPORTED_MODULE_3__["default"],
-  meta: {
-    requiresAuth: true
-  }
-}, {
   path: "/scales",
   name: "scales",
   component: _components_scales_Index__WEBPACK_IMPORTED_MODULE_21__["default"],
@@ -115685,7 +115678,10 @@ var routes = [{
 }, {
   path: "/evaluations",
   name: "evaluation.index",
-  component: _components_evaluations_Index__WEBPACK_IMPORTED_MODULE_17__["default"]
+  component: _components_evaluations_Index__WEBPACK_IMPORTED_MODULE_17__["default"],
+  meta: {
+    requiresAuth: true
+  }
 }, {
   path: "/evaluations/" + pathCrud,
   name: "evaluation.form",
@@ -115701,31 +115697,52 @@ var routes = [{
 }, {
   path: "/reports",
   name: "reports",
-  component: _components_reports_Reports__WEBPACK_IMPORTED_MODULE_23__["default"]
+  component: _components_reports_Reports__WEBPACK_IMPORTED_MODULE_23__["default"],
+  meta: {
+    requiresAuth: true
+  }
 }, {
   path: "/settings/exclusions/teachers",
   name: "teacherExclusions",
-  component: _components_exclusions_TeacherExclusions__WEBPACK_IMPORTED_MODULE_14__["default"]
+  component: _components_exclusions_TeacherExclusions__WEBPACK_IMPORTED_MODULE_14__["default"],
+  meta: {
+    requiresAuth: true
+  }
 }, {
   path: "/settings/menus",
   name: "menus",
-  component: _components_menus_Menus__WEBPACK_IMPORTED_MODULE_12__["default"]
+  component: _components_menus_Menus__WEBPACK_IMPORTED_MODULE_12__["default"],
+  meta: {
+    requiresAuth: true
+  }
 }, {
   path: "/settings/users",
   name: "users",
-  component: _components_users_Users__WEBPACK_IMPORTED_MODULE_10__["default"]
+  component: _components_users_Users__WEBPACK_IMPORTED_MODULE_10__["default"],
+  meta: {
+    requiresAuth: true
+  }
 }, {
   path: "/settings/roles",
   name: "roles",
-  component: _components_roles_Roles__WEBPACK_IMPORTED_MODULE_11__["default"]
+  component: _components_roles_Roles__WEBPACK_IMPORTED_MODULE_11__["default"],
+  meta: {
+    requiresAuth: true
+  }
 }, {
   path: "/settings/permissions",
   name: "permissions",
-  component: _components_permissions_Permissions__WEBPACK_IMPORTED_MODULE_15__["default"]
+  component: _components_permissions_Permissions__WEBPACK_IMPORTED_MODULE_15__["default"],
+  meta: {
+    requiresAuth: true
+  }
 }, {
   path: "/settings/system",
   name: "system",
-  component: _components_system_System__WEBPACK_IMPORTED_MODULE_13__["default"]
+  component: _components_system_System__WEBPACK_IMPORTED_MODULE_13__["default"],
+  meta: {
+    requiresAuth: true
+  }
 }, {
   path: "/profile",
   name: "profile",
@@ -115750,14 +115767,26 @@ var routes = [{
   component: _components_auth_PasswordReset__WEBPACK_IMPORTED_MODULE_7__["default"],
   name: 'password.reset'
 }, {
-  path: "/student/:code",
-  name: "student",
+  path: '/student/:code',
+  name: 'student',
   component: _components_students_Student__WEBPACK_IMPORTED_MODULE_24__["default"]
 }, // public path
 {
-  path: "/contact-support",
+  path: '/contact-support',
   name: "ContactSupport",
   component: _components_ContactSupport__WEBPACK_IMPORTED_MODULE_8__["default"]
+}, {
+  path: '/dashboard',
+  name: 'dashboard',
+  component: _components_Dashboard__WEBPACK_IMPORTED_MODULE_3__["default"],
+  meta: {
+    requiresAuth: true
+  }
+}, {
+  path: '/',
+  redirect: {
+    name: 'dashboard'
+  }
 }, {
   path: '*',
   name: "NotFound",
@@ -115856,7 +115885,6 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
             axios.defaults.headers.common['Authorization'] = null;
             localStorage.removeItem('access_token');
             context.commit('destroyToken');
-            context.commit('setUser', null);
             resolve(res);
           })["catch"](function (err) {
             //console.log(error)

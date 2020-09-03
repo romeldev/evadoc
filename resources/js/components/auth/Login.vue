@@ -5,7 +5,7 @@
 
         <div class="alert alert-danger" role="alert" v-if="error.message">
             Error: {{ error.message }}
-        </div>
+        </div>  
 
         <form @submit.prevent="login()">
             <div class="input-group mb-3">

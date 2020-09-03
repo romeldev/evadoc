@@ -35,24 +35,24 @@ var  pathCrud = ':id(\\d+|create)/:action(\\edit|delete)?';
 
 const routes = [
 
-    { path: "/dashboard", name: "dashboard", component: Dashboard, meta: { requiresAuth: true } },
+    
     { path: "/scales", name: "scales", component: Scales, meta: { requiresAuth: true } },
     { path: "/levels", name: "levels", component: Levels, meta: { requiresAuth: true } },
     { path: "/surveys", name: "survey", component: Surveys, meta: { requiresAuth: true } },
 
-    { path: "/evaluations", name: "evaluation.index", component: EvaluationsIndex },
+    { path: "/evaluations", name: "evaluation.index", component: EvaluationsIndex, meta: { requiresAuth: true } },
     { path: "/evaluations/"+pathCrud, name: "evaluation.form", component: EvaluationsForm },
     { path: "/evaluations/:evaluation_id/teachers", name: "evaluation.teachers", component: EvaluationTeachers },
     { path: "/evaluations/:evaluation_id/teachers/:teacher_code/qualify", name: "evaluation.qualify", component: EvaluationQualify },
-    { path: "/reports", name: "reports", component: Reports },
+    { path: "/reports", name: "reports", component: Reports, meta: { requiresAuth: true }},
 
-    { path: "/settings/exclusions/teachers", name: "teacherExclusions", component: TeacherExclusions },
+    { path: "/settings/exclusions/teachers", name: "teacherExclusions", component: TeacherExclusions, meta: { requiresAuth: true } },
 
-    { path: "/settings/menus", name: "menus", component: Menus },
-    { path: "/settings/users", name: "users", component: Users },
-    { path: "/settings/roles", name: "roles", component: Roles },
-    { path: "/settings/permissions", name: "permissions", component: Permissions },
-    { path: "/settings/system", name: "system", component: System },
+    { path: "/settings/menus", name: "menus", component: Menus , meta: { requiresAuth: true }},
+    { path: "/settings/users", name: "users", component: Users , meta: { requiresAuth: true }},
+    { path: "/settings/roles", name: "roles", component: Roles , meta: { requiresAuth: true }},
+    { path: "/settings/permissions", name: "permissions", component: Permissions , meta: { requiresAuth: true }},
+    { path: "/settings/system", name: "system", component: System , meta: { requiresAuth: true }},
 
     { path: "/profile", name: "profile", component: Profile, meta: { requiresAuth: true } },
 
@@ -64,9 +64,14 @@ const routes = [
 
     { path: '/password/reset/:token', component: PasswordReset, name: 'password.reset' },
 
-    { path: "/student/:code", name: "student", component: Student }, // public path
+    { path: '/student/:code', name: 'student', component: Student }, // public path
 
-    { path: "/contact-support", name: "ContactSupport", component: ContactSupport },
+    { path: '/contact-support', name: "ContactSupport", component: ContactSupport },
+
+
+    { path: '/dashboard', name: 'dashboard', component: Dashboard, meta: { requiresAuth: true } },
+
+    { path: '/', redirect: {name: 'dashboard'} },
 
     { path: '*', name: "NotFound", component: NotFound },
 ];
