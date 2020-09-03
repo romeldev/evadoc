@@ -46,8 +46,8 @@ class Student extends Model
             'school_code' => $request->school_code,
             'student_code' => $request->student_code,
             'teacher_code' => $request->teacher_code,
-            'course_code' => $request->course_code,
-            'course_group' => $request->course_group,
+            'course_key' => $request->course_code.'-'.$request->course_group,
+            // 'course_group' => $request->course_group,
             'status' => 1,
         ]);
 
